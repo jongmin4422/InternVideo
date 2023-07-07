@@ -423,7 +423,10 @@ def build_model(
                 continue
             if any(x in k for x in clip_sd_new.keys()):
                 print('merging: ', k, '\t', clip_sd_new[k].shape, state_dict[k].shape)
-                new_sd[k] = clip_sd_new[k] * mergeweight + state_dict[k] * (1.0 - mergeweight)
+                if k == "visual.conv1.weight":
+                    new_sd[k] = clip_sd_new[k].to(new_sd[k].device) * mergeweight + (state_dict[k] * (1.0 - mergeweight)).unsqueeze(2)
+                else:
+                    new_sd[k] = clip_sd_new[k].to(new_sd[k].device) * mergeweight + state_dict[k] * (1.0 - mergeweight)
                 
                 ############## only merge the clip text features, this is for ActivityNet ###########
                 # if 'visual' in k: 

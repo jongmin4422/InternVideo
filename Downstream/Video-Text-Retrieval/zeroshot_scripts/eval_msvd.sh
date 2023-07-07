@@ -8,8 +8,8 @@ python -u -m main_task_retrieval \
     --coef_lr=5e-3 \
     --batch_size=8 \
     --batch_size_val=32 \
-    --features_path="" \
-    --data_path="" \
+    --features_path="/home/mini/projects/dataset2/MSVD/MSVD_Videos/" \
+    --data_path="/home/mini/projects/dataset2/MSVD/" \
     --datatype="msvd" \
     --max_words=77 \
     --max_frames=12 \
@@ -23,7 +23,7 @@ python -u -m main_task_retrieval \
     --freeze_layer_num=0 \
     --expand_msrvtt_sentences \
     --clip_evl \
-    --output_dir=""  \
-    --pretrained_path="" \
+    --output_dir="output" \
+    --pretrained_path="/home/mini/projects/InternVideo/Downstream/Video-Text-Retrieval/modules/ViT-L-14.pt" \
     --mergeclip=true \
     --mergeweight=0.25 \

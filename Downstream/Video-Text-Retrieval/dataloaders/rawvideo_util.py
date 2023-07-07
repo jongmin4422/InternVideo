@@ -52,6 +52,8 @@ class RawVideoExtractorCV2():
             presigned_url = client.generate_presigned_url(video_file, client_method ='get_object', expires_in=36000)
             assert presigned_url is not None, "Get video failed from {}".format(presigned_url)
             cap = cv2.VideoCapture(presigned_url)
+        else:
+            cap = cv2.VideoCapture(video_file)
         
         frameCount = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         fps = int(cap.get(cv2.CAP_PROP_FPS))

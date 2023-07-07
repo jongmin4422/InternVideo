@@ -70,7 +70,8 @@ class MSVD_DataLoader(Dataset):
             captions = pickle.load(f)
 
         video_dict = {}
-        for video_file in client.list(self.features_path):
+        # for video_file in client.list(self.features_path):
+        for video_file in os.listdir(self.features_path):
             video_id_ = ".".join(video_file.split(".")[:-1])
             if video_id_ not in video_ids:
                 continue

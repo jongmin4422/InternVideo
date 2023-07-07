@@ -138,7 +138,9 @@ def load(
                 jit = False
             state_dict = torch.load(model_path, map_location="cpu")
     ''' 
-    init_state_dict = torch.load(model_path, map_location='cpu')['state_dict']
+    # init_state_dict = torch.load(model_path, map_location='cpu')['state_dict']
+    init_state_dict = torch.load(model_path, map_location='cpu').state_dict()
+
     state_dict = {}
     for k, v in init_state_dict.items():
         k = k.replace('clip.','')

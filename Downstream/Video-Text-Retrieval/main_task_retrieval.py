@@ -156,6 +156,7 @@ def init_distributed_mode(args):
         args.rank = int(os.environ["RANK"])
         args.world_size = int(os.environ['WORLD_SIZE'])
         args.gpu = int(os.environ['LOCAL_RANK'])
+        args.dist_url = 'env://'
     # launched with submitit on a slurm cluster
     elif 'SLURM_PROCID' in os.environ:
         #args.rank = int(os.environ['SLURM_PROCID'])
@@ -189,6 +190,8 @@ def init_distributed_mode(args):
         args.rank, args.gpu, args.world_size = 0, 0, 1
         os.environ['MASTER_ADDR'] = '127.0.0.1'
         os.environ['MASTER_PORT'] = '29500'
+        args.dist_url = 'env://'
+
     else:
         print('Does not support training without GPU.')
         sys.exit(1)
